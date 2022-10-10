@@ -15,16 +15,31 @@ public class MathUtil {
     //ko có giai thừa âm
     //quy ước: n nhận vào từ 0...20!
     public static long getFactorial(int n) {
+//      CACH1
+//        if (n < 0 || n > 20)
+//            throw new IllegalArgumentException("Invalid argument. n must be between 0 to 20");
+//        if (n == 0 || n == 1)
+//            return 1;
+//        long product = 1;//tích khởi đầu là 1, biến tích lũy acc
+//        for (int i = 2; i <= n; i++)
+//            product *= i; //product = product * i
+//        return product;
+//      CACH 2
         if (n < 0 || n > 20)
             throw new IllegalArgumentException("Invalid argument. n must be between 0 to 20");
         if (n == 0 || n == 1)
             return 1;
-        long product = 1;//tích khởi đầu là 1, biến tích lũy acc
-        for (int i = 2; i <= n; i++)
-            product *= i; //product = product * i
-        return product;
+        // n! = n * (n-1)!
+        return n * getFactorial(n-1);
+}
 
-    }
+    //viết tính giai thừa theo đệ quy
+    // n!= 1.2.3.4...n
+    //c1: viết theo kiểu for, con heo đất, nhồi dần kết quả vào 1 biến
+    //product = product * i;
+    //c2: đệ quy - recursion
+    //Gọi lại chính mình với 1 quy mô/giá trị khác 
+    // 5!= 5 . 4!
     //tư duy viết code theo kiểu gọi là TDD - Test Driven Development
     //Test First Development: khi viết code thì song song đó phải viết các tính huống kiểm thử code/class/kiểm thử app
     //tư duy viết code kiểm thử:
